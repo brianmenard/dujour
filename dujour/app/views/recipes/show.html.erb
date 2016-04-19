@@ -1,0 +1,14 @@
+<%=stylesheet_link_tag 'application'%>
+<link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+
+<h1><%=@recipe.name%></h1>
+
+<h2>Ingredients:</h2>
+<ul>
+<%@recipe.ingredients.each do |ingr|%>
+  <li><%=ingr.amount%> <%=ingr.name%>
+<%end%>
+</ul>
+
+<h2>Instructions: </h2>
+<p><%=@recipe.instructions%></p>

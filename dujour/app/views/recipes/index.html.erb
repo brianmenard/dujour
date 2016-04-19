@@ -1,1 +1,13 @@
-<h1>Recipes Home</h1>
+<%=stylesheet_link_tag 'application'%>
+<link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+
+<h1>Welcome to DuJour, <%=@user.username%>!</h1>
+
+<h2>Latest Recipes</h2>
+
+<%@recipes.all.each do |recipe|%>
+
+  <%=link_to recipe.name, recipe_path(recipe)%>
+<br>
+
+<%end%>
