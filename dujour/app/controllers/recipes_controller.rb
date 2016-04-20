@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.create(recipe_params)
     #NEED TO FIND OUT HOW TO ADD AMOUNT TO JOIN TABLE
+    puts params
     redirect_to recipe_path(@recipe)
   end
 
@@ -22,7 +23,7 @@ class RecipesController < ApplicationController
 private
 
 def recipe_params
-    params.require(:recipe).permit(:name, :instructions, :ingredients_attributes => [:name, :amount])
+    params.require(:recipe).permit(:name, :instructions)
 end
 
 end
