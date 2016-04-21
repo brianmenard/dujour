@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create(recipe_params)
-    #NEED TO FIND OUT HOW TO ADD AMOUNT TO JOIN TABLE
+    #NEED TO CREATE OR FIND BY INGREDIENT NAME && BUILD SETTER/GETTER METHODS FOR INGREDIENT AMOUNT
     puts params
     redirect_to recipe_path(@recipe)
   end

@@ -10,15 +10,14 @@
 <br>
 <%=f.label :ingredients%><br><br>
 <%=f.fields_for :ingredients, [@recipe.ingredients.build]*5 do |ingr_fields|%>
-  <%=ingr_fields.label :name%><br>
-  <%=ingr_fields.text_field :name%><br>
-<%#NEED TO ADD AMOUNT FIELD AND TIE TO JOIN TABLE%>
+  <%=ingr_fields.label :amount%>---------------------------<%=ingr_fields.label :name%><br>
+  <%=ingr_fields.text_field :amount%>  <%=ingr_fields.text_field :name%>
 <br>
 <%end%>
-
+<br>
 
 <%=f.label :instructions%><br>
-<%=f.text_area :instructions%><br>
+<%=f.text_area :instructions, size: '60x10'%><br>
 
 <br><%=f.submit%>
 <%end%>
