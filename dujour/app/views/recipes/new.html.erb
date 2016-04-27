@@ -9,9 +9,9 @@
 <%=f.text_field :name%><br>
 <br>
 <%=f.label :ingredients%><br><br>
-<%=f.fields_for :ingredients, [@recipe.ingredients.build]*5 do |ingr_fields|%>
-  <%=ingr_fields.label :amount%>---------------------------<%=ingr_fields.label :name%><br>
-  <%=ingr_fields.text_field :amount%>  <%=ingr_fields.text_field :name%>
+<%=f.fields_for :ingredients do |ingr_fields|%>
+  <%=ingr_fields.label :name%><br>
+  <%=ingr_fields.text_field :name%><br>
 <br>
 <%end%>
 <br>

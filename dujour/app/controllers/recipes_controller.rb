@@ -7,12 +7,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe.ingredients.build()
+    @recipe.ingredients.build()
   end
 
   def create
     @recipe = Recipe.create(recipe_params)
-    #NEED TO CREATE OR FIND BY INGREDIENT NAME && BUILD SETTER/GETTER METHODS FOR INGREDIENT AMOUNT
-    puts params
     redirect_to recipe_path(@recipe)
   end
 
@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
 private
 
 def recipe_params
-    params.require(:recipe).permit(:name, :instructions)
+    params.require(:recipe).permit(:name, :instructions, :ingredients_attributes => [:name])
 end
 
 end
