@@ -6,7 +6,7 @@
 <h2>Ingredients:</h2>
 <ul>
 <%@recipe.ingredients.each do |ingr|%>
-   <li><%=link_to ingr.name, ingredient_path(ingr)%>
+   <li><%=RecipeIngredient.getAmount(@recipe.id, ingr.id)%> <%=link_to ingr.name, ingredient_path(ingr)%>
 <%end%>
 </ul>
 
