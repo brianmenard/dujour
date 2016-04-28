@@ -7,11 +7,14 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    5.times do 
+      @recipe.ingredients.build()
+    end
   end
 
   def create
     @recipe = Recipe.create(recipe_params)
-    #NEED TO FIND OUT HOW TO ADD AMOUNT TO JOIN TABLE
+    RecipeIngredient.setAmounts(@recipe.id, amount_params)
     redirect_to recipe_path(@recipe)
   end
 
@@ -21,8 +24,12 @@ class RecipesController < ApplicationController
 
 private
 
-def recipe_params
-    params.require(:recipe).permit(:name, :instructions, :ingredients_attributes => [:name, :amount])
-end
+  def recipe_params
+      params.require(:recipe).permit(:name, :instructions, :ingredients_attributes => [:name])
+  end
+
+  def amount_params
+    params.require(:recipe).permit(:ingredients_attributes => [:name, :amount])
+  end
 
 end
