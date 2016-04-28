@@ -5,9 +5,8 @@
 
 <h2>Latest Recipes</h2>
 
-<%@recipes.all.each do |recipe|%>
-
-  <%=link_to recipe.name, recipe_path(recipe)%>
+<%@recipes.all.order(updated_at: :desc).each do |recipe|%>
+  <%=link_to recipe.name, recipe_path(recipe)%> by <%=link_to recipe.user.username, user_path(recipe.user)%>
 <br>
 
 <%end%>

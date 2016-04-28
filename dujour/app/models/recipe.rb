@@ -4,6 +4,7 @@ class Recipe < ActiveRecord::Base
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
   accepts_nested_attributes_for :ingredients
+  validates :name, presence: true
 
   def ingredients_attributes=(ingredients_hash)
     # ingredients_hash={
@@ -11,9 +12,10 @@ class Recipe < ActiveRecord::Base
     #   "1" => ["name" => "name input"]
     # }
     ingredients_hash.values.each do |ingredient_attributes|
-      ingredient = Ingredient.find_or_create_by(name: ingredient_attributes[:name])
-      self.ingredients << ingredient
-      #need to figure out how to access amount
+      if ingredient_attributes[:name] != ""
+        ingredient = Ingredient.find_or_create_by(name: ingredient_attributes[:name])
+        self.ingredients << ingredient
+      end
     end
   end
 

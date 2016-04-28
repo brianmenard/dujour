@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    5.times do 
+    5.times do
       @recipe.ingredients.build()
     end
   end
@@ -15,6 +15,8 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.create(recipe_params)
     RecipeIngredient.setAmounts(@recipe.id, amount_params)
+    @recipe.user = current_user
+    @recipe.save
     redirect_to recipe_path(@recipe)
   end
 

@@ -1,0 +1,10 @@
+<h1><%=@user.username%>'s Profile </h1>
+
+<h2>Submit Recipes:</h2>
+<ul>
+  
+  <%@user.recipes.each do |recipe|%>
+    <li><%=link_to recipe.name, recipe_path(recipe)%>
+  <%end%>
+  
+</ul>
