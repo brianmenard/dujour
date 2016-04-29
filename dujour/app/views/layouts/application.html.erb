@@ -1,23 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Dujour</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%=link_to "Home", root_path%>  ||
-<%if !user_signed_in?%>
-  <%= link_to "Sign in", new_user_session_path%>  ||
-  <%=link_to "Sign up", new_user_registration_path%>  ||
-<%end%>
-<% if user_signed_in?%>
-  <%=link_to "New Recipe", new_recipe_path%>  ||
-  <%=link_to "My Profile", user_path(current_user)%>  ||
-  <%=link_to "Sign out", destroy_user_session_path, method:'DELETE'%>
-  <%end%>
-<%= yield %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <title>DuJour</title>
 
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+  <nav class="navbar">
+    <ul class="nav navbar-nav">
+      <li><%=link_to "Home", root_path%>
+      <%if !user_signed_in?%>
+      <li><%= link_to "Sign in", new_user_session_path%>
+      <li><%=link_to "Sign up", new_user_registration_path%>
+      <%else%>
+      <li><%=link_to "New Recipe", new_recipe_path%>
+      <li><%=link_to "My Profile", user_path(current_user)%>
+      <li><%=link_to "Sign out", destroy_user_session_path, method: :DELETE%>
+      <%end%>
+    </ul>
+  </nav>
+  <div id="main-container" class="container-fluid">
+    <%= yield %>
+  </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
