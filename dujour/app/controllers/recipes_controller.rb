@@ -20,8 +20,18 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
   def show
     @recipe = Recipe.find_by(id: params[:id])
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.delete
+    redirect_to recipes_path
   end
 
 private

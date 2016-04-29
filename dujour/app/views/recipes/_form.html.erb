@@ -1,0 +1,22 @@
+<%=form_for @recipe do |f|%>
+
+<%=f.label :name%><br>
+<%=f.text_field :name%><br>
+<br>
+<fieldset>
+  <legend>Ingredients</legend>
+<%=f.fields_for :ingredients do |ingr_fields|%>
+  <%=ingr_fields.label :name%><br>
+  <%=ingr_fields.text_field :name%><br>
+  <%=ingr_fields.label :amount%><br>
+  <%=ingr_fields.text_field :amount%><br>
+<br>
+<%end%>
+</fieldset>
+<br>
+
+<%=f.label :instructions%><br>
+<%=f.text_area :instructions, size: '60x10'%><br>
+
+<br><%=f.submit%>
+<%end%>
