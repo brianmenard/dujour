@@ -17,7 +17,13 @@
     <br>
     <%end%>
   </div>
-  <div class='col-xs-3'></div>
-  <div class='col-xs-3'></div>
+  <div class='col-xs-4'>
+    <h2>Most Popular</h2>
+    <%@recipes.all.order(views: :desc).each do |recipe|%>
+    <%=link_to recipe.name, recipe_path(recipe)%> by <%=link_to recipe.user.username, user_path(recipe.user)%>
+    <br>
+    <%end%>
+  </div>
+  <div class='col-xs-2'></div>
   <div class='col-xs-1'></div>
 </div>

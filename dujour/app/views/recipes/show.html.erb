@@ -1,16 +1,18 @@
 <%=stylesheet_link_tag 'application'%>
 <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
 
-<h1><%=@recipe.name%></h1>
+<h1 class="logoType"><%=@recipe.name%></h1>
+Views: <%=@recipe.views%>
+<br>
 <%=link_to "Edit", edit_recipe_path(@recipe)%>  ||  <%=link_to "Delete", recipe_path(@recipe), method: 'DELETE'%>
 
-<h2>Ingredients:</h2>
+<h3>Ingredients:</h3>
 <ul>
 <%@recipe.ingredients.each do |ingr|%>
    <li><%=RecipeIngredient.getAmount(@recipe.id, ingr.id)%> <%=link_to ingr.name, ingredient_path(ingr)%>
 <%end%>
 </ul>
 
-<h2>Instructions: </h2>
+<h3>Instructions: </h3>
 <p><%=@recipe.instructions%></p>
 

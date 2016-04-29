@@ -26,6 +26,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by(id: params[:id])
+    @recipe.views += 1
+    @recipe.save
   end
 
   def destroy
