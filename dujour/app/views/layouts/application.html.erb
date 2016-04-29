@@ -36,6 +36,8 @@
     </ul>
   </nav>
   <div id="main-container" class="container-fluid">
+    <%#render devise errors%>
+    <%= render 'layouts/messages' %>
     <%= yield %>
   </div>
 
