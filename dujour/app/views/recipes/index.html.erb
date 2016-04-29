@@ -13,6 +13,10 @@
   <div class='col-xs-4'>
     <h2>Latest Recipes</h2>
     <%@recipes.all.order(updated_at: :desc).each do |recipe|%>
+    <%if !!recipe.photo%>
+      <%=image_tag recipe.photo.url%>
+      <br>
+    <%end%>
     <%=link_to recipe.name, recipe_path(recipe)%> by <%=link_to recipe.user.username, user_path(recipe.user)%>
     <br>
     <%end%>

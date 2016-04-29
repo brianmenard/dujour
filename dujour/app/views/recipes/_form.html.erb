@@ -1,8 +1,10 @@
-<%=form_for @recipe do |f|%>
+<%=form_for @recipe, html: {multipart: true} do |f|%>
 
 <%=f.label :name%><br>
 <%=f.text_field :name%><br>
 <br>
+<%=f.label :photo%>
+<%=f.file_field :photo%>
 <fieldset>
   <legend>Ingredients</legend>
 <%=f.fields_for :ingredients do |ingr_fields|%>
