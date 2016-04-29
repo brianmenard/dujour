@@ -24,7 +24,7 @@
 <body>
   <nav class="navbar">
     <ul class="nav navbar-nav">
-      <li><%=link_to "Home", root_path%>
+      <li class="logoType"><%=link_to "DuJour", root_path%>
       <%if !user_signed_in?%>
       <li><%= link_to "Sign in", new_user_session_path%>
       <li><%=link_to "Sign up", new_user_registration_path%>
