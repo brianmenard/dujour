@@ -5,6 +5,8 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
   accepts_nested_attributes_for :ingredients
   validates :name, presence: true
+  has_attached_file :photo
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
   def ingredients_attributes=(ingredients_hash)
     # ingredients_hash={
