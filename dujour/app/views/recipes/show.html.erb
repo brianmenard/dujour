@@ -1,18 +1,26 @@
-<%=stylesheet_link_tag 'application'%>
-<link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+<div class='row'>
+  <div class='col-xs-2'></div>
+    <div class='col-xs-2'>
+      <h1 class="logoType"><%=@recipe.name%></h1>
+      Created by <%=link_to @recipe.user.username, user_path(@recipe.user)%><br>
+      Views: <%=@recipe.views%>
+      <br>
+      <%=link_to "Edit", edit_recipe_path(@recipe)%>  ||  <%=link_to "Delete", recipe_path(@recipe), method: 'DELETE'%>
 
-<h1 class="logoType"><%=@recipe.name%></h1>
-Views: <%=@recipe.views%>
-<br>
-<%=link_to "Edit", edit_recipe_path(@recipe)%>  ||  <%=link_to "Delete", recipe_path(@recipe), method: 'DELETE'%>
-
-<h3>Ingredients:</h3>
-<ul>
-<%@recipe.ingredients.each do |ingr|%>
-   <li><%=RecipeIngredient.getAmount(@recipe.id, ingr.id)%> <%=link_to ingr.name, ingredient_path(ingr)%>
-<%end%>
-</ul>
-
-<h3>Instructions: </h3>
-<p><%=@recipe.instructions%></p>
-
+      <h3>Ingredients:</h3>
+      <ul>
+      <%@recipe.ingredients.each do |ingr|%>
+      <li><%=RecipeIngredient.getAmount(@recipe.id, ingr.id)%> <%=link_to ingr.name, ingredient_path(ingr)%>
+      <%end%>
+    </ul>
+  </div>
+  <div class='col-xs-4'>
+      <%=image_tag @recipe.photo.url, class:'thumbnail'%>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-xs-2 col-xs-offset-4'>
+      <h3>Instructions: </h3>
+      <p><%=@recipe.instructions%></p>
+  </div>
+</div>
