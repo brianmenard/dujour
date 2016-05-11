@@ -1,10 +1,14 @@
 <%=form_for @recipe, html: {multipart: true} do |f|%>
-
-<%=f.label :name%><br>
-<%=f.text_field :name%><br>
-<br>
-<%=f.label :photo%>
-<%=f.file_field :photo%>
+<div class='row'>
+  <div class='col-xs-1'></div>
+  <div class='col-xs-2'>
+    <legend>Name</legend>
+      <%=f.text_field :name%><br>
+        <br>
+        <legend>Photo</legend>
+        <%=f.file_field :photo%>
+  </div>
+  <div class='col-xs-2'>
 <fieldset>
   <legend>Ingredients</legend>
 <%=f.fields_for :ingredients do |ingr_fields|%>
@@ -15,10 +19,12 @@
 <br>
 <%end%>
 </fieldset>
-<br>
+</div>
+<div class='col-xs-3'>
+  <legend>Instructions</legend>
+  <%=f.text_area :instructions, size: '60x10'%><br>
+  <br><%=f.submit class:"btn btn-default btn-lg"%>
+</div>
+</div>
 
-<%=f.label :instructions%><br>
-<%=f.text_area :instructions, size: '60x10'%><br>
-
-<br><%=f.submit%>
 <%end%>

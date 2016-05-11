@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :recipes
   resources :ingredients, only: [:index, :show]
-  resources :users
+  resources :users do
+    resources :recipes, only: [:new]
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
