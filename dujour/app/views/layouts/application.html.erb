@@ -32,7 +32,7 @@
       <%else%>
       <li><%=link_to "New Recipe", new_user_recipe_path(current_user)%>
       <li><%=link_to "My Profile", user_path(current_user)%>
-      <li><a href='/ingredients/index.json' id="byIngredient">Browse by Ingredient</a>
+      <li><a href='/ingredients' id="byIngredient">Browse by Ingredient</a>
       <li><%=link_to "Sign out", destroy_user_session_path, method: :DELETE%>
       <%end%>
     </ul>
@@ -49,11 +49,18 @@
     <script src="js/bootstrap.min.js"></script>
     <script type='text/javascript' charset="utf-8">
       $(document).ready(function(){
-        $('#byIngredient').on("click", function(){
-
-          $.get(this.href)
-
-
+        $('#byIngredient').on("click", function(e){
+          $.get(this.href).success(function(response){
+            var html = "<div id='ingredients_list'><ul>";
+            //get the json and parse it to get data
+            $.each(response, function(index, ingredient){
+              html+="<li><a href='/ingredients/" + ingredient['id'] + "'>" +
+               ingredient["name"] + "</a>";
+            });
+            html+="</ul></div>"
+            $(".navbar").after(html)
+          });
+          e.preventDefault();
         });
       });
     </script>
