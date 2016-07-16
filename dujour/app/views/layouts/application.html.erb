@@ -48,13 +48,14 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script type='text/javascript' charset="utf-8">
+
       $(document).ready(function(){
         $('#byIngredient').on("click", function(e){
           $.get(this.href).success(function(response){
             var html = "<div id='ingredients_list'><ul>";
             //get the json and parse it to get data
             $.each(response, function(index, ingredient){
-              html+="<li><a href='/ingredients/" + ingredient['id'] + "'>" +
+              html+="<li><a href='/ingredients/" + ingredient['id'] + "' class='ingredientLink' id='ingredientLink-'" + ingredient['id'] + ">" +
                ingredient["name"] + "</a>";
             });
             html+="</ul></div>"
@@ -63,6 +64,7 @@
           e.preventDefault();
         });
       });
+
     </script>
 </body>
 </html>
