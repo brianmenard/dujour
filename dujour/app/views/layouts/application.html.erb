@@ -33,6 +33,7 @@
       <li><%=link_to "New Recipe", new_user_recipe_path(current_user)%>
       <li><%=link_to "My Profile", user_path(current_user)%>
       <li><a href='/ingredients' id="byIngredient">Browse by Ingredient</a>
+      <li><%= link_to "Shopping List", list_items_path%>
       <li><%=link_to "Sign out", destroy_user_session_path, method: :DELETE%>
       <%end%>
     </ul>
