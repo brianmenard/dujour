@@ -11,11 +11,11 @@ Used in:
     $(document).ready(function(){
       $('.recipeLink').on('click', function(e){
         var html = "";
+        var node = this;
         $.get(this.href).success(function(recipe){
-            html+= "<div><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a>";
+          html+= "<div><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a>";
+          $(node).after(html);
           });
-          alert("Fetching recipe...")
-          $(this).after(html)
           e.preventDefault();
         });
       });
