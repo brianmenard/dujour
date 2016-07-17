@@ -27,9 +27,19 @@
 <div class="row comments">
   <div class="col-md-2"></div>
   <div class="col-md-4">
+    <h4>Comments:</h4>
+    <div id="comments_section">
+      <ul>
+        <%if @recipe.comments %>
+          <%= @recipe.comments.each do |comment| %>
+            <li><%= comment.content%>
+          <%end%>
+        <%end%>
+      </ul>
+    </div>
     <form id="comment_form">
-      <label>Comments:</label><br>
-      <input type="text" size="50x40" />
+      <label>New Comment:</label><br>
+      <input type="text" size="50x40" name="content"/>
       <input type="submit" value="Submit"/>
     </form>
   </div>
