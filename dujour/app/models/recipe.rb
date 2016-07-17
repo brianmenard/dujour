@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
+  has_many :comments
   accepts_nested_attributes_for :ingredients
   validates :name, presence: true
   has_attached_file :photo
