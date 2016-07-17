@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :recipes
-  resources :list_items, only: [:index, :create]
+  resources :list_items, only: [:index, :create, :show]
   resources :ingredients, only: [:index, :show]
   resources :users do
     resources :recipes, only: [:new]

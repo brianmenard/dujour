@@ -1,5 +1,7 @@
 class ListItemsController < ApplicationController
 
+  skip_before_action :verify_authenticity_token
+
   def index
     @list_items = ListItem.all
     @new_item = ListItem.new
@@ -7,7 +9,12 @@ class ListItemsController < ApplicationController
 
   def create
     @item = ListItem.create(item_params)
-    redirect_to list_items_path
+    redirect_to list_item_path(@item.id)
+  end
+
+  def show
+    @item = ListItem.find(params[:id])
+    render json: @item
   end
 
 

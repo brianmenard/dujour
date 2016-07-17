@@ -1,12 +1,40 @@
 <h1>My Shopping List</h1>
 
-<ul>
+<ul id="item_list">
 <%@list_items.each do |item|%>
   <li><%=item.content%>
 <%end%>
 </ul>
 
-<%=form_for @new_item, url: {action: 'create'} do |f|%>
-  <%=f.text_field :content%>
+<%=form_for @new_item, url: {action: 'create'}, html: {id: "new_item_form"} do |f|%>
+  <%=f.text_field :content, id: 'content'%>
   <%=f.submit "Add item"%>
 <%end%>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('#new_item_form').on("submit", function(e){
+
+      url = this.action
+
+      data = {
+        'list_item': {
+          'content': $('#content').val()
+        }
+      };
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(response){
+          var html = "<li>" + response['content']
+          $('#item_list').append(html)
+          $('#content').val("")
+        }
+      })
+
+      e.preventDefault();
+    });
+  });
+</script>
