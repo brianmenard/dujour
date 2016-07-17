@@ -1,1 +1,12 @@
-<h1>TEST</h1>
+<h1>My Shopping List</h1>
+
+<ul>
+<%@list_items.each do |item|%>
+  <li><%=item.content%>
+<%end%>
+</ul>
+
+<%=form_for @new_item, url: {action: 'create'} do |f|%>
+  <%=f.text_field :content%>
+  <%=f.submit "Add item"%>
+<%end%>
