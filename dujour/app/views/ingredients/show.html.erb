@@ -10,13 +10,13 @@ Used in:
   <script type='text/javascript' charset='utf-8'>
     $(document).ready(function(){
       $('.recipeLink').on('click', function(e){
-        e.preventDefault();
-        var html = "<div><p>";
+        var html = "";
         $.get(this.href).success(function(recipe){
-            html+= recipe['instructions'] + "</p></div>";
+            html+= "<div><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a>";
           });
-          alert("html: " + html)
+          alert("Fetching recipe...")
           $(this).after(html)
+          e.preventDefault();
         });
       });
   </script>
