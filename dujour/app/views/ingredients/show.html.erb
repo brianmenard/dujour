@@ -1,8 +1,22 @@
 <br>
 <h1><%=@ingredient.name%></h1>
 <br>
-Recipes:
+Used in:
 <ul>
   <%@ingredient.recipes.each do |recipe|%>
-    <li><%=link_to recipe.name, recipe_path(recipe)%>
+    <li><%=link_to recipe.name, recipe_path(recipe, format: :json), class: "recipeLink"%>
   <%end%>
+
+  <script type='text/javascript' charset='utf-8'>
+    $(document).ready(function(){
+      $('.recipeLink').on('click', function(e){
+        e.preventDefault();
+        var html = "<div><p>";
+        $.get(this.href).success(function(recipe){
+            html+= recipe['instructions'] + "</p></div>";
+          });
+          alert("html: " + html)
+          $(this).after(html)
+        });
+      });
+  </script>

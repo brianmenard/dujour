@@ -29,6 +29,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: params[:id])
     @recipe.views += 1
     @recipe.save
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @recipe}
+    end
   end
 
   def destroy
