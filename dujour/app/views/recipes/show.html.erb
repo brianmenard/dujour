@@ -24,12 +24,15 @@
       <p><%=@recipe.instructions%></p>
   </div>
 </div>
+
+<% if false #COMMENT OUT THIS SECTION%>
+
 <div class="row comments">
   <div class="col-md-2"></div>
   <div class="col-md-4">
     <h4>Comments:</h4>
     <div id="comments_section">
-      <ul>
+      <ul id="comments_list">
         <%if @recipe.comments %>
           <%= @recipe.comments.each do |comment| %>
             <li><%= comment.content%>
@@ -39,8 +42,41 @@
     </div>
     <form id="comment_form">
       <label>New Comment:</label><br>
-      <input type="text" size="50x40" name="content"/>
+      <input type="text" size="50x40" name="content" id="content"/>
       <input type="submit" value="Submit"/>
     </form>
   </div>
 </div>
+
+<script type="javascript/text" charset="utf-8">
+
+  $(document).ready(function(){
+
+    $("#comment_form").on('submit', function(e){
+      e.preventDefault();
+
+      data = {
+        'comment':{
+          'content': $('#content').val();
+        }
+      };
+
+      $.ajax({
+        type:'POST',
+        url: '/comments',
+        data: data,
+        success: function(response){
+          var html = "<li>"
+          html += response['content']
+          $('#comments_list').append(html)
+          $('#content').val("")
+        }
+      })
+      e.preventDefault();
+    })
+
+  });
+
+</script>
+
+<% end %>
