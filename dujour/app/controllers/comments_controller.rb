@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create(comment_params)
+    @comment.recipe = Recipe.find(params[:id])
     render json: @comment
   end
 
