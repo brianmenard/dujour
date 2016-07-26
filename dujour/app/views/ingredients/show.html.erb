@@ -20,7 +20,7 @@ Used in:
             html+="<li>" + ingredient['name']
           })
 
-          html+= "</ul><br><div><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a>";
+          html+= "</ul><br><div><h4>Instructions</h4><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a><br>";
           $(node).after(html);
           });
           e.preventDefault();
