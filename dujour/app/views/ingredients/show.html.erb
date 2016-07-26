@@ -14,7 +14,13 @@ Used in:
         var html = "";
         var node = this;
         $.get(this.href).success(function(recipe){
-          html+= "<div><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a>";
+          html+= "<h4>Ingredients:</h4><ul>"
+
+          $.each(recipe['ingredients'], function(index, ingredient){
+            html+="<li>" + ingredient['name']
+          })
+
+          html+= "</ul><br><div><p>" + recipe['instructions'] + "</p></div> <a href='/recipes/"+ recipe['id'] + "'>View</a>";
           $(node).after(html);
           });
           e.preventDefault();
