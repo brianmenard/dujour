@@ -6,6 +6,7 @@ Used in:
   <%@ingredient.recipes.each do |recipe|%>
     <li><%=link_to recipe.name, recipe_path(recipe, format: :json), class: "recipeLink"%>
   <%end%>
+</ul>
 
   <script type='text/javascript' charset='utf-8'>
     $(document).ready(function(){
