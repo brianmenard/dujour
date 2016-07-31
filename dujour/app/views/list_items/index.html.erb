@@ -14,14 +14,15 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     $('#new_item_form').on("submit", function(e){
+      e.preventDefault();
+       var url = this.action
 
-      url = this.action
-
-      data = {
-        'list_item': {
-          'content': $('#content').val()
-        }
-      };
+      // data = {
+      //   'list_item': {
+      //     'content': $('#content').val()
+      //   }
+      // };
+      var data = $(this).serialize();
 
       $.ajax({
         type: "POST",
@@ -33,8 +34,6 @@
           $('#content').val("")
         }
       })
-
-      e.preventDefault();
     });
   });
 </script>

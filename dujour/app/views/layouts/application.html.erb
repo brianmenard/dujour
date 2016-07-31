@@ -52,6 +52,7 @@
 
       $(document).ready(function(){
         $('#byIngredient').on("click", function(e){
+          e.preventDefault();
           $.get(this.href).success(function(response){
             var html = "<div id='ingredients_list'><ul>";
             //get the json and parse it to get data
@@ -62,7 +63,6 @@
             html+="</ul></div>"
             $(".navbar").after(html)
           });
-          e.preventDefault();
         });
       });
 

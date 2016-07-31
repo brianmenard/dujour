@@ -1,30 +1,50 @@
 <%=form_for @recipe, html: {multipart: true} do |f|%>
-<div class='row'>
-  <div class='col-xs-1'></div>
-  <div class='col-xs-2'>
-    <legend>Name</legend>
-      <%=f.text_field :name%><br>
-        <br>
-        <legend>Photo</legend>
-        <%=f.file_field :photo%>
+  <div class='row'>
+    <div class='col-xs-1'></div>
+    <div class='col-xs-2'>
+      <legend>Name</legend>
+        <%=f.text_field :name%><br>
+          <br>
+          <legend>Photo</legend>
+          <%=f.file_field :photo%>
+    </div>
+    <div class='col-xs-2'>
+  <fieldset>
+    <legend>Ingredients</legend>
+    <%=f.fields_for :ingredients do |ingr_fields|%>
+      <div class='ingredients-fields'>
+        <%=ingr_fields.label :name%><br>
+        <%=ingr_fields.text_field :name%><br>
+        <%=ingr_fields.label :amount%><br>
+        <%=ingr_fields.text_field :amount%><br>
+      </div>
+  <br>
+  <%end%>
+  <a href="#" class="add-ingredient">Add Ingredient</a>
+  </fieldset>
   </div>
-  <div class='col-xs-2'>
-<fieldset>
-  <legend>Ingredients</legend>
-<%=f.fields_for :ingredients do |ingr_fields|%>
-  <%=ingr_fields.label :name%><br>
-  <%=ingr_fields.text_field :name%><br>
-  <%=ingr_fields.label :amount%><br>
-  <%=ingr_fields.text_field :amount%><br>
-<br>
-<%end%>
-</fieldset>
-</div>
-<div class='col-xs-3'>
-  <legend>Instructions</legend>
-  <%=f.text_area :instructions, size: '60x10'%><br>
-  <br><%=f.submit class:"btn btn-default btn-lg"%>
-</div>
-</div>
+  <div class='col-xs-3'>
+    <legend>Instructions</legend>
+      <%=f.text_area :instructions, size: '60x10'%><br>
+    <br><%=f.submit class:"btn btn-default btn-lg"%>
+  </div>
+  </div>
 
 <%end%>
+
+<script type="text/javascript" charset="utf-8">
+
+  $(document).ready(function(){
+
+    $(".add-ingredient").on('click', function(){
+      var copy = $(".ingredients-fields:first").clone()
+      var count = $(".ingredients-fields").length
+
+      copy.find("#recipe_ingredients_attributes_0_name").attr("id", "recipe_ingredients_attributes_" + count + "_name")
+
+      $(this).before(copy);
+    })
+
+  })
+
+</script>
